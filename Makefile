@@ -222,6 +222,9 @@ pflash_img:
 	@rm -f $(PFLASH_IMG)
 	$(call mk_pflash,$(PFLASH_IMG))
 
+payload:
+	@make -C ./payload
+
 clean: clean_c
 	rm -rf $(APP)/*.bin $(APP)/*.elf $(OUT_CONFIG)
 	cargo clean
