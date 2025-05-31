@@ -56,6 +56,8 @@ GRAPHIC ?= n
 BUS ?= pci
 MEM ?= 128M
 ACCEL ?=
+PFLASH ?= y
+PFLASH_IMG ?= pflash.img
 
 DISK_IMG ?= disk.img
 QEMU_LOG ?= n
@@ -214,6 +216,10 @@ ifneq ($(wildcard $(DISK_IMG)),)
 else
 	$(call make_disk_image,fat32,$(DISK_IMG))
 endif
+
+pflash_img:
+	@rm -f $(PFLASH_IMG)
+	$(call mk_pflash,$(PFLASH_IMG))
 
 clean: clean_c
 	rm -rf $(APP)/*.bin $(APP)/*.elf $(OUT_CONFIG)
