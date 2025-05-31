@@ -25,6 +25,10 @@ use vcpu::_run_guest;
 use sbi::SbiMessage;
 use loader::load_vm_image;
 use axhal::mem::PhysAddr;
+use axhal::mem::VirtAddr;
+
+const USER_ASPACE_BASE: usize = 0x0000;
+const USER_ASPACE_SIZE: usize = 0x40_0000_0000;
 
 const VM_ENTRY: usize = 0x8020_0000;
 
@@ -33,7 +37,7 @@ fn main() {
     ax_println!("Hypervisor ...");
 
     // A new address space for vm.
-    let mut uspace = axmm::new_user_aspace().unwrap();
+    let mut uspace = axmm::new_user_aspace(VirtAddr::from(USER_ASPACE_BASE), USER_ASPACE_SIZE).unwrap();
 
     // Load vm binary file into address space.
     if let Err(e) = load_vm_image("/sbin/skernel", &mut uspace) {

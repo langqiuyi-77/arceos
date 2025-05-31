@@ -31,8 +31,8 @@ members = [
     "examples/shell",
 
     "payload/origin",
-    # "payload/skernel",
-    # "payload/skernel2",
+    "payload/skernel",
+    "payload/skernel2",
 
     "tour/u_1_0",
     "tour/u_2_0",
@@ -48,7 +48,7 @@ members = [
     "tour/m_2_0",
     "tour/m_3_0",
     "tour/m_3_1",
-    # "tour/h_1_0",
+    "tour/h_1_0",
     # "tour/h_2_0",
     # "tour/h_3_0",
     # "tour/h_4_0",
