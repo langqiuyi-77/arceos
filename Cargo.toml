@@ -46,7 +46,7 @@ members = [
     "tour/m_1_0",
     "tour/m_1_1",
     "tour/m_2_0",
-    # "tour/m_3_0",
+    "tour/m_3_0",
     # "tour/m_3_1",
     # "tour/h_1_0",
     # "tour/h_2_0",
@@ -87,6 +87,7 @@ axruntime = { path = "modules/axruntime" }
 axsync = { path = "modules/axsync" }
 axtask = { path = "modules/axtask" }
 axdma = { path = "modules/axdma" }
+elf = { path = "modules/elf" }
 
 [patch.crates-io]
 axfs_ramfs = { path = "./axfs_ramfs"}

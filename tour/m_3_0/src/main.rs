@@ -23,13 +23,16 @@ use alloc::collections::BTreeMap;
 use axmm::AddrSpace;
 use loader::load_user_app;
 
+const USER_ASPACE_BASE: usize = 0x0000;
+const USER_ASPACE_SIZE: usize = 0x40_0000_0000;
+
 const USER_STACK_SIZE: usize = 0x10000;
 const KERNEL_STACK_SIZE: usize = 0x40000; // 256 KiB
 
 #[cfg_attr(feature = "axstd", no_mangle)]
 fn main() {
     // A new address space for user app.
-    let mut uspace = axmm::new_user_aspace().unwrap();
+    let mut uspace = axmm::new_user_aspace(VirtAddr::from(USER_ASPACE_BASE), USER_ASPACE_SIZE).unwrap();;
 
     // Load user app binary file into address space.
     let entry = match load_user_app("/sbin/hello", &mut uspace) {
@@ -45,7 +48,7 @@ fn main() {
     // Let's kick off the user process.
     let user_task = task::spawn_user_task(
         Arc::new(Mutex::new(uspace)),
-        UspaceContext::new(entry, ustack_top),
+        UspaceContext::new(entry, ustack_top, 0),
     );
 
     // Wait for user process to exit ...
