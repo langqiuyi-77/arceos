@@ -37,15 +37,15 @@ members = [
     "tour/u_1_0",
     "tour/u_2_0",
     "tour/u_3_0",
-    # "tour/u_4_0",
-    # "tour/u_5_0",
-    # "tour/u_6_0",
-    # "tour/u_6_1",
-    # "tour/u_7_0",
-    # "tour/u_8_0",
-    # "tour/m_1_0",
-    # "tour/m_1_1",
-    # "tour/m_2_0",
+    "tour/u_4_0",
+    "tour/u_5_0",
+    "tour/u_6_0",
+    "tour/u_6_1",
+    "tour/u_7_0",
+    "tour/u_8_0",
+    "tour/m_1_0",
+    "tour/m_1_1",
+    "tour/m_2_0",
     # "tour/m_3_0",
     # "tour/m_3_1",
     # "tour/h_1_0",
@@ -87,6 +87,9 @@ axruntime = { path = "modules/axruntime" }
 axsync = { path = "modules/axsync" }
 axtask = { path = "modules/axtask" }
 axdma = { path = "modules/axdma" }
+
+[patch.crates-io]
+axfs_ramfs = { path = "./axfs_ramfs"}
 
 [profile.release]
 lto = true

@@ -429,8 +429,6 @@ dependencies = [
 [[package]]
 name = "axfs_ramfs"
 version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "db46c6dae25a123579d5fdcdcc502d0dc2a8af86646106004c8a9181433271b1"
 dependencies = [
  "axfs_vfs",
  "log",
@@ -1210,6 +1208,48 @@ dependencies = [
 ]
 
 [[package]]
+name = "m_1_0"
+version = "0.1.0"
+dependencies = [
+ "axerrno",
+ "axhal",
+ "axlog",
+ "axmm",
+ "axstd",
+ "axsync",
+ "axtask",
+ "linkme",
+]
+
+[[package]]
+name = "m_1_1"
+version = "0.1.0"
+dependencies = [
+ "axerrno",
+ "axhal",
+ "axlog",
+ "axmm",
+ "axstd",
+ "axsync",
+ "axtask",
+ "linkme",
+]
+
+[[package]]
+name = "m_2_0"
+version = "0.1.0"
+dependencies = [
+ "axerrno",
+ "axhal",
+ "axlog",
+ "axmm",
+ "axstd",
+ "axsync",
+ "axtask",
+ "linkme",
+]
+
+[[package]]
 name = "managed"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1750,6 +1790,51 @@ dependencies = [
 
 [[package]]
 name = "u_3_0"
+version = "0.1.0"
+dependencies = [
+ "axstd",
+]
+
+[[package]]
+name = "u_4_0"
+version = "0.1.0"
+dependencies = [
+ "axstd",
+]
+
+[[package]]
+name = "u_5_0"
+version = "0.1.0"
+dependencies = [
+ "axstd",
+]
+
+[[package]]
+name = "u_6_0"
+version = "0.1.0"
+dependencies = [
+ "axlog",
+ "axstd",
+]
+
+[[package]]
+name = "u_6_1"
+version = "0.1.0"
+dependencies = [
+ "axlog",
+ "axstd",
+]
+
+[[package]]
+name = "u_7_0"
+version = "0.1.0"
+dependencies = [
+ "axdriver",
+ "axstd",
+]
+
+[[package]]
+name = "u_8_0"
 version = "0.1.0"
 dependencies = [
  "axstd",
