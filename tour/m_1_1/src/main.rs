@@ -21,6 +21,9 @@ use alloc::sync::Arc;
 use axmm::AddrSpace;
 use loader::load_user_app;
 
+const USER_ASPACE_BASE: usize = 0x0000;
+const USER_ASPACE_SIZE: usize = 0x40_0000_0000;
+
 const USER_STACK_SIZE: usize = 0x10000;
 const KERNEL_STACK_SIZE: usize = 0x40000; // 256 KiB
 const APP_ENTRY: usize = 0x1000;
@@ -28,7 +31,7 @@ const APP_ENTRY: usize = 0x1000;
 #[cfg_attr(feature = "axstd", no_mangle)]
 fn main() {
     // A new address space for user app.
-    let mut uspace = axmm::new_user_aspace().unwrap();
+    let mut uspace = axmm::new_user_aspace(VirtAddr::from(USER_ASPACE_BASE), USER_ASPACE_SIZE).unwrap();
 
     // Load user app binary file into address space.
     if let Err(e) = load_user_app(&mut uspace) {
@@ -42,7 +45,7 @@ fn main() {
     // Let's kick off the user process.
     let user_task = task::spawn_user_task(
         Arc::new(Mutex::new(uspace)),
-        UspaceContext::new(APP_ENTRY.into(), ustack_top),
+        UspaceContext::new(APP_ENTRY.into(), ustack_top, 0),
     );
 
     // Wait for user process to exit ...
