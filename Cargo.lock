@@ -1285,6 +1285,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "m_3_1"
+version = "0.1.0"
+dependencies = [
+ "arceos_posix_api",
+ "axerrno",
+ "axhal",
+ "axlog",
+ "axmm",
+ "axstd",
+ "axsync",
+ "axtask",
+ "elf",
+ "kernel-elf-parser",
+ "linkme",
+]
+
+[[package]]
 name = "managed"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
