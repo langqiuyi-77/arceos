@@ -1021,6 +1021,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "h_2_0"
+version = "0.1.0"
+dependencies = [
+ "axerrno",
+ "axhal",
+ "axmm",
+ "axstd",
+ "log",
+ "memory_addr",
+ "riscv_vcpu",
+]
+
+[[package]]
 name = "handler_table"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1651,6 +1664,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "riscv-decode"
+version = "0.2.1"
+source = "git+https://github.com/KuangjuX/riscv-decode.git#0e346d0ad041987023caa6f7f832185ed568630b"
+
+[[package]]
 name = "riscv-macros"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1682,6 +1700,25 @@ name = "riscv_goldfish"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "07aac72f95e774476db82916d79f2d303191310393830573c1ab5c821b21660a"
+
+[[package]]
+name = "riscv_vcpu"
+version = "0.1.0"
+dependencies = [
+ "axerrno",
+ "axhal",
+ "bit_field",
+ "bitflags 2.9.1",
+ "cfg-if",
+ "log",
+ "memoffset",
+ "memory_addr",
+ "riscv 0.6.0",
+ "riscv-decode",
+ "sbi-rt 0.0.2",
+ "sbi-spec 0.0.6",
+ "tock-registers 0.8.1",
+]
 
 [[package]]
 name = "rlsf"

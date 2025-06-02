@@ -31,12 +31,13 @@ pub fn putchar(c: u8) {
 fn try_write_bytes(bytes: &[u8]) -> usize {
     let pa = virt_to_phys(VirtAddr::from_ptr_of(bytes.as_ptr())).as_usize();
 
-    sbi_rt::console_write(Physical::new(
-        bytes.len().min(MAX_RW_SIZE),
-        pa,
-        0,
-    ))
-    .value
+    // sbi_rt::console_write(Physical::new(
+    //     bytes.len().min(MAX_RW_SIZE),
+    //     pa,
+    //     0,
+    // ))
+    // .value
+    0
 }
 
 /// Writes a slice of bytes to the console.
