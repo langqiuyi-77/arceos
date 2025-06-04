@@ -26,7 +26,7 @@ impl<const SIZE: usize> EarlyAllocator<SIZE> {
 
 impl<const SIZE: usize> BaseAllocator for EarlyAllocator<SIZE> {
     fn init(&mut self, start: usize, size: usize) {
-        todo!()
+        todo!("bump allocator not implemented yet")
     }
 
     fn add_memory(&mut self, start: usize, size: usize) -> allocator::AllocResult {
