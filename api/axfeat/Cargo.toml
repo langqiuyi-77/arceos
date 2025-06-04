@@ -32,6 +32,8 @@ paging = ["alloc", "axhal/paging", "axruntime/paging"]
 tls = ["alloc", "axhal/tls", "axruntime/tls", "axtask?/tls"]
 dma = ["alloc", "paging"]
 
+alt_alloc = ["alt_axalloc", "axruntime/alt_alloc"]
+
 # Multi-threading and scheduler
 multitask = ["alloc", "axtask/multitask", "axsync/multitask", "axruntime/multitask"]
 sched_fifo = ["axtask/sched_fifo"]
@@ -72,6 +74,7 @@ axruntime = { workspace = true }
 axhal = { workspace = true }
 axlog = { workspace = true }
 axalloc = { workspace = true, optional = true }
+alt_axalloc = { workspace = true, optional = true }
 axdriver = { workspace = true, optional = true }
 axfs = { workspace = true, optional = true }
 axnet = { workspace = true, optional = true }

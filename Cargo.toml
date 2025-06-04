@@ -3,6 +3,7 @@ resolver = "2"
 
 members = [
     "modules/axalloc",
+    "modules/alt_axalloc",
     "modules/axconfig",
     "modules/axdisplay",
     "modules/axdriver",
@@ -51,8 +52,15 @@ members = [
     "tour/m_3_1",
     "tour/h_1_0",
     "tour/h_2_0",
-    # "tour/h_3_0",
-    # "tour/h_4_0",
+    "tour/h_3_0",
+    "tour/h_4_0",
+
+    "exercises/print_with_color",
+    "exercises/support_hashmap",
+    "exercises/alt_alloc",
+    "exercises/sys_map",
+    "exercises/simple_hv",
+    "exercises/ramfs_rename",
 ]
 
 [workspace.package]
@@ -75,6 +83,7 @@ arceos_posix_api = { path = "api/arceos_posix_api" }
 axfeat = { path = "api/axfeat" }
 
 axalloc = { path = "modules/axalloc" }
+alt_axalloc = { path = "modules/alt_axalloc" }
 axconfig = { path = "modules/axconfig" }
 axdisplay = { path = "modules/axdisplay" }
 axdriver = { path = "modules/axdriver" }

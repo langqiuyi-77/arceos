@@ -31,14 +31,42 @@ dependencies = [
 
 [[package]]
 name = "allocator"
+version = "0.1.0"
+source = "git+https://github.com/arceos-org/allocator.git?tag=v0.1.0#16496d88dd6fc6a0bdfa59aedfb6b349bd88ee88"
+dependencies = [
+ "bitmap-allocator 0.1.0",
+]
+
+[[package]]
+name = "allocator"
 version = "0.1.1"
 source = "git+https://github.com/arceos-org/allocator.git?tag=v0.1.1#1d5b7a1b4fd8db4c9c9cea4e6012d15d42e2bf40"
 dependencies = [
- "bitmap-allocator",
+ "bitmap-allocator 0.2.0",
  "buddy_system_allocator",
  "cfg-if",
  "rlsf",
  "slab_allocator",
+]
+
+[[package]]
+name = "alt_alloc"
+version = "0.1.0"
+dependencies = [
+ "axstd",
+]
+
+[[package]]
+name = "alt_axalloc"
+version = "0.1.0"
+dependencies = [
+ "allocator 0.1.0",
+ "axerrno",
+ "bump_allocator",
+ "cfg-if",
+ "kspin",
+ "log",
+ "memory_addr",
 ]
 
 [[package]]
@@ -141,6 +169,7 @@ dependencies = [
 name = "arceos_api"
 version = "0.1.0"
 dependencies = [
+ "alt_axalloc",
  "axalloc",
  "axconfig",
  "axdisplay",
@@ -230,7 +259,7 @@ checksum = "ace50bade8e6234aa140d9a2f552bbee1db4d353f69b8217bc503490fc1a9f26"
 name = "axalloc"
 version = "0.1.0"
 dependencies = [
- "allocator",
+ "allocator 0.1.1",
  "axerrno",
  "cfg-if",
  "kspin",
@@ -282,7 +311,7 @@ dependencies = [
 name = "axdma"
 version = "0.1.0"
 dependencies = [
- "allocator",
+ "allocator 0.1.1",
  "axalloc",
  "axconfig",
  "axerrno",
@@ -380,6 +409,7 @@ dependencies = [
 name = "axfeat"
 version = "0.1.0"
 dependencies = [
+ "alt_axalloc",
  "axalloc",
  "axdisplay",
  "axdriver",
@@ -563,6 +593,7 @@ dependencies = [
 name = "axruntime"
 version = "0.1.0"
 dependencies = [
+ "alt_axalloc",
  "axalloc",
  "axconfig",
  "axdisplay",
@@ -694,6 +725,15 @@ checksum = "1b8e56985ec62d17e9c1001dc89c88ecd7dc08e47eba5ec7c29c7b5eeecde967"
 
 [[package]]
 name = "bitmap-allocator"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e7d02f31396fef542812875187cf51d84977184dd9e5907573a81b8972f3f6ec"
+dependencies = [
+ "bit_field",
+]
+
+[[package]]
+name = "bitmap-allocator"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5553d824a3564e1c242975cfc962d15e6299bfa4a90c44c14208673c16df51f3"
@@ -712,6 +752,13 @@ name = "buddy_system_allocator"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a7913f22349ffcfc6ca0ca9a656ec26cfbba538ed49c31a273dff2c5d1ea83d9"
+
+[[package]]
+name = "bump_allocator"
+version = "0.1.0"
+dependencies = [
+ "allocator 0.1.0",
+]
 
 [[package]]
 name = "bumpalo"
@@ -1022,6 +1069,32 @@ dependencies = [
 
 [[package]]
 name = "h_2_0"
+version = "0.1.0"
+dependencies = [
+ "axerrno",
+ "axhal",
+ "axmm",
+ "axstd",
+ "log",
+ "memory_addr",
+ "riscv_vcpu",
+]
+
+[[package]]
+name = "h_3_0"
+version = "0.1.0"
+dependencies = [
+ "axerrno",
+ "axhal",
+ "axmm",
+ "axstd",
+ "log",
+ "memory_addr",
+ "riscv_vcpu",
+]
+
+[[package]]
+name = "h_4_0"
 version = "0.1.0"
 dependencies = [
  "axerrno",
@@ -1505,6 +1578,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "print_with_colord"
+version = "0.1.0"
+dependencies = [
+ "axstd",
+]
+
+[[package]]
 name = "proc-macro-error-attr2"
 version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1549,6 +1629,16 @@ name = "r-efi"
 version = "5.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "74765f6d916ee2faa39bc8e68e4f3ed8949b48cccdac59983d287a7cb71ce9c5"
+
+[[package]]
+name = "ramfs_rename"
+version = "0.1.0"
+dependencies = [
+ "axfs_ramfs",
+ "axfs_vfs",
+ "axstd",
+ "crate_interface",
+]
 
 [[package]]
 name = "rand"
@@ -1846,6 +1936,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
+name = "simple_hv"
+version = "0.1.0"
+dependencies = [
+ "axerrno",
+ "axhal",
+ "axlog",
+ "axmm",
+ "axstd",
+ "axsync",
+ "axtask",
+ "memoffset",
+ "riscv 0.6.0",
+ "sbi-rt 0.0.2",
+ "sbi-spec 0.0.6",
+ "tock-registers 0.8.1",
+]
+
+[[package]]
 name = "skernel"
 version = "0.1.0"
 
@@ -1903,6 +2011,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
 
 [[package]]
+name = "support_hashmap"
+version = "0.1.0"
+dependencies = [
+ "axstd",
+]
+
+[[package]]
 name = "svgbobdoc"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1935,6 +2050,25 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
+]
+
+[[package]]
+name = "sys_map"
+version = "0.1.0"
+dependencies = [
+ "arceos_posix_api",
+ "axerrno",
+ "axhal",
+ "axlog",
+ "axmm",
+ "axstd",
+ "axsync",
+ "axtask",
+ "bitflags 2.9.1",
+ "elf",
+ "kernel-elf-parser",
+ "linkme",
+ "memory_addr",
 ]
 
 [[package]]

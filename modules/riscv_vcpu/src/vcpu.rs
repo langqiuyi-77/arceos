@@ -298,10 +298,6 @@ impl RISCVVCpu {
         use scause::{Exception, Interrupt, Trap};
         match scause.cause() {
             Trap::Exception(Exception::VirtualSupervisorEnvCall) => {
-                let a_regs = self.regs.guest_regs.gprs.a_regs();
-                for (i, val) in a_regs.iter().enumerate() {
-                    info!("a{}: {:#x}", i, val);
-                }
                 let sbi_msg = SbiMessage::from_regs(self.regs.guest_regs.gprs.a_regs()).ok();
                 debug!("VSuperEcall: {:?}", sbi_msg);
                 if let Some(sbi_msg) = sbi_msg {

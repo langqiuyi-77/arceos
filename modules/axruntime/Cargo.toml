@@ -16,6 +16,7 @@ smp = ["axhal/smp", "axtask?/smp"]
 irq = ["axhal/irq", "axtask?/irq", "percpu", "kernel_guard"]
 tls = ["axhal/tls", "axtask?/tls"]
 alloc = ["axalloc"]
+alt_alloc = ["alt_axalloc"]
 paging = ["axhal/paging", "axmm"]
 
 multitask = ["axtask/multitask"]
@@ -29,6 +30,7 @@ axhal = { workspace = true }
 axlog = { workspace = true }
 axconfig = { workspace = true }
 axalloc = { workspace = true, optional = true }
+alt_axalloc = { workspace = true, optional = true }
 axmm = { workspace = true, optional = true }
 axdriver = { workspace = true, optional = true }
 axfs = { workspace = true, optional = true }
