@@ -1239,8 +1239,6 @@ dependencies = [
 [[package]]
 name = "kernel_guard"
 version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "307e6be468f3d6b6d895e191f63c11602e4e76575ecca68325d8c8dbebe2870e"
 dependencies = [
  "cfg-if",
  "crate_interface",

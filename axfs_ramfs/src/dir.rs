@@ -67,16 +67,6 @@ impl DirNode {
         children.remove(name);
         Ok(())
     }
-
-    /// Rename 
-    pub fn rename_node(&self, old_name: &str, new_name: &str) -> VfsResult {
-        let mut children = self.children.write();
-        let node = children.remove(old_name).ok_or(VfsError::NotFound)?;
-    
-        children.insert(new_name.into(), node);
-
-        Ok(())
-    }
 }
 
 impl VfsNodeOps for DirNode {
@@ -90,7 +80,6 @@ impl VfsNodeOps for DirNode {
 
     fn lookup(self: Arc<Self>, path: &str) -> VfsResult<VfsNodeRef> {
         let (name, rest) = split_path(path);
-        // 每次只处理一段，剩下的路径交给子节点递归 loopup 
         let node = match name {
             "" | "." => Ok(self.clone() as VfsNodeRef),
             ".." => self.parent().ok_or(VfsError::NotFound),
@@ -129,6 +118,7 @@ impl VfsNodeOps for DirNode {
     }
 
     fn create(&self, path: &str, ty: VfsNodeType) -> VfsResult {
+        log::debug!("create {:?} at ramfs: {}", ty, path);
         let (name, rest) = split_path(path);
         if let Some(rest) = rest {
             match name {
@@ -175,37 +165,6 @@ impl VfsNodeOps for DirNode {
         }
     }
 
-    /// src_path and dst_path at least contain a 
-    /// Only support rename not move, src_path and dst_path in the same directory 
-    fn rename(&self, src_path: &str, dst_path: &str) -> VfsResult {
-        log::debug!("rename at ramfs: rename {} to {}", src_path, dst_path);
-
-        let (src_name, rest) = split_path(src_path);
-        if let Some(rest) = rest {
-            match src_name {
-                "" | "." => self.rename(rest, dst_path),
-                ".." => self.parent().ok_or(VfsError::NotFound)?.rename(rest, dst_path),
-                _ => {
-                    let subdir = self
-                        .children
-                        .read()
-                        .get(src_name)
-                        .ok_or(VfsError::NotFound)?
-                        .clone();
-                    subdir.rename(rest, dst_path)
-                }
-            }
-        } else {
-            let mut children = self.children.write();
-            let node = children.remove(src_name).unwrap();
-            let new_name = get_new_name(dst_path);
-
-            children.insert(new_name.into(), node);
-
-            Ok(())
-        }
-    }
-
     axfs_vfs::impl_vfs_dir_default! {}
 }
 
@@ -214,22 +173,4 @@ fn split_path(path: &str) -> (&str, Option<&str>) {
     trimmed_path.find('/').map_or((trimmed_path, None), |n| {
         (&trimmed_path[..n], Some(&trimmed_path[n + 1..]))
     })
-}
-
-// fn split_parent_path(path: &str) -> VfsResult<(&str, &str)> {
-//     let trimmed = path.trim_start_matches('/');
-//     // rfind 是真的没有想到，都是考虑从左到右边的，没有想到从右边到左的 
-//     match trimmed.rfind('/') {
-//         Some(pos) => Ok((&trimmed[..pos], &trimmed[pos + 1..])),
-//         None => Ok((".", trimmed)),
-//     }
-// }
-
-fn get_new_name(path: &str) -> &str {
-    let trimmed = path.trim_start_matches('/');
-    // rfind 
-    match trimmed.rfind('/') {
-        Some(pos) => &trimmed[pos + 1..],
-        None => path,
-    }
 }

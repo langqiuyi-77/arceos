@@ -52,10 +52,5 @@ impl VfsNodeOps for FileNode {
         Ok(buf.len())
     }
 
-    fn remove(&self, path: &str) -> VfsResult {
-        log::warn!("remove at ramfs: {}", path);
-        Ok(())
-    }
-
-    // impl_vfs_non_dir_default! {}
+    impl_vfs_non_dir_default! {}
 }
